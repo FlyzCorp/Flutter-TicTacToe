@@ -1,10 +1,11 @@
 import 'dart:developer';
 
 import 'package:bordered_text/bordered_text.dart';
-import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
+import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow, Title;
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
 import 'package:tictactoe/components/case.dart';
 import 'package:tictactoe/components/scoreboard.dart';
+import 'package:tictactoe/components/title.dart';
 
 class GameScreen extends StatefulWidget {
   const GameScreen({super.key});
@@ -14,6 +15,8 @@ class GameScreen extends StatefulWidget {
 }
 
 class _GameScreenState extends State<GameScreen> {
+  final String p1Name = 'Joueur 1';
+  final String p2Name = 'Joueur 2';
   int p1Score = 0, p2Score = 0;
   int turn = 0;
   int playerTurn = 1; //1 is P1, -1 is P2
@@ -86,107 +89,101 @@ class _GameScreenState extends State<GameScreen> {
 
   @override
   Widget build(BuildContext context) {
-    log(game.toString());
-    Widget titleWidget = Center(
-      child: Container(
-        margin: const EdgeInsets.only(top: 48),
-        child: BorderedText(
-          strokeWidth: 10,
-          strokeColor: const Color(0xFFEACDC2),
-          child: const Text(
-            "TICTACTOE",
-            style: TextStyle(
-              fontFamily: 'Unbounded',
-              fontWeight: FontWeight.w900,
-              fontSize: 36,
-              color: Color(0xFFB75D69),
-            ),
-          ),
-        ),
-      ),
-    );
-
-    Widget gameboardWidget = Center(
-      child: Container(
-        padding: const EdgeInsets.all(32),
-        margin: const EdgeInsets.all(32),
-        decoration: const BoxDecoration(
-          color: Color(0xFFEACDC2),
-          boxShadow: [
-            BoxShadow(
-              blurRadius: 6,
-              offset: Offset(0, 4),
-              color: Color.fromARGB(175, 0, 0, 0),
-              inset: true,
-            ),
-          ],
-        ),
-        alignment: Alignment.center,
-        child: Column(
-          //crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Case(
-                  state: game[0][0],
-                  onTap: () => handleGameState(0, 0),
-                ),
-                Case(
-                  state: game[0][1],
-                  onTap: () => handleGameState(0, 1),
-                ),
-                Case(
-                  state: game[0][2],
-                  onTap: () => handleGameState(0, 2),
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Case(
-                  state: game[1][0],
-                  onTap: () => handleGameState(1, 0),
-                ),
-                Case(
-                  state: game[1][1],
-                  onTap: () => handleGameState(1, 1),
-                ),
-                Case(
-                  state: game[1][2],
-                  onTap: () => handleGameState(1, 2),
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Case(
-                  state: game[2][0],
-                  onTap: () => handleGameState(2, 0),
-                ),
-                Case(
-                  state: game[2][1],
-                  onTap: () => handleGameState(2, 1),
-                ),
-                Case(
-                  state: game[2][2],
-                  onTap: () => handleGameState(2, 2),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-
     return SafeArea(
       child: Column(
         children: [
-          titleWidget,
-          ScoreBoard(p1Score: p1Score, p2Score: p2Score),
-          gameboardWidget,
+          const Title(),
+          ScoreBoard(
+            p1Name: p1Name,
+            p2Name: p2Name,
+            p1Score: p1Score,
+            p2Score: p2Score,
+          ),
+          BorderedText(
+            strokeWidth: 5,
+            strokeColor: const Color(0xFFEACDC2),
+            child: Text(
+              "${playerTurn > 0 ? p1Name : p2Name} turn",
+              style: const TextStyle(
+                fontSize: 24,
+                color: Color(0xFFB75D69),
+              ),
+            ),
+          ),
+          Center(
+            child: Container(
+              padding: const EdgeInsets.all(32),
+              margin: const EdgeInsets.all(24),
+              decoration: const BoxDecoration(
+                color: Color(0xFFEACDC2),
+                boxShadow: [
+                  BoxShadow(
+                    blurRadius: 6,
+                    offset: Offset(0, 4),
+                    color: Color.fromARGB(175, 0, 0, 0),
+                    inset: true,
+                  ),
+                ],
+              ),
+              alignment: Alignment.center,
+              child: Column(
+                //crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Case(
+                        state: game[0][0],
+                        onTap: () => handleGameState(0, 0),
+                      ),
+                      Case(
+                        state: game[0][1],
+                        onTap: () => handleGameState(0, 1),
+                      ),
+                      Case(
+                        state: game[0][2],
+                        onTap: () => handleGameState(0, 2),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Case(
+                        state: game[1][0],
+                        onTap: () => handleGameState(1, 0),
+                      ),
+                      Case(
+                        state: game[1][1],
+                        onTap: () => handleGameState(1, 1),
+                      ),
+                      Case(
+                        state: game[1][2],
+                        onTap: () => handleGameState(1, 2),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Case(
+                        state: game[2][0],
+                        onTap: () => handleGameState(2, 0),
+                      ),
+                      Case(
+                        state: game[2][1],
+                        onTap: () => handleGameState(2, 1),
+                      ),
+                      Case(
+                        state: game[2][2],
+                        onTap: () => handleGameState(2, 2),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );

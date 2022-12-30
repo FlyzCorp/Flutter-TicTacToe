@@ -5,7 +5,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class ScoreBoard extends StatelessWidget {
   final int p1Score, p2Score;
-  const ScoreBoard({super.key, required this.p1Score, required this.p2Score});
+  final String p1Name, p2Name;
+  const ScoreBoard(
+      {super.key,
+      required this.p1Name,
+      required this.p2Name,
+      required this.p1Score,
+      required this.p2Score});
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +40,10 @@ class ScoreBoard extends StatelessWidget {
                 color: const Color(0xFF372549),
               ),
               Text(
-                "Player1",
+                p1Name,
                 style: TextStyle(
                   fontSize: 24,
+                  fontWeight: FontWeight.bold,
                   color: Theme.of(context).backgroundColor,
                 ),
               ),
@@ -56,9 +63,10 @@ class ScoreBoard extends StatelessWidget {
           Row(
             children: [
               Text(
-                "Player2",
+                p2Name,
                 style: TextStyle(
                   fontSize: 24,
+                  fontWeight: FontWeight.bold,
                   color: Theme.of(context).backgroundColor,
                 ),
               ),
