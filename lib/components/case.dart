@@ -13,12 +13,12 @@ class Case extends StatelessWidget {
     if (state > 0) {
       displayed = SvgPicture.asset(
         'assets/img/o.svg',
-        color: const Color(0xFF774C60),
+        color: Theme.of(context).primaryColorDark,
       );
     } else if (state < 0) {
       displayed = SvgPicture.asset(
         'assets/img/x.svg',
-        color: const Color(0xFF372549),
+        color: Theme.of(context).backgroundColor,
       );
     } else {
       displayed = null;
@@ -27,8 +27,8 @@ class Case extends StatelessWidget {
     return GestureDetector(
       onTap: () => onTap(),
       child: Container(
-        width: 90,
-        height: 90,
+        width: 80,
+        height: 80,
         decoration: BoxDecoration(
           border: Border.all(
             color: Colors.black,

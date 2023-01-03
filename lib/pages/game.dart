@@ -99,12 +99,12 @@ class _GameScreenState extends State<GameScreen> {
           ),
           BorderedText(
             strokeWidth: 5,
-            strokeColor: const Color(0xFFEACDC2),
+            strokeColor: Theme.of(context).primaryColorLight,
             child: Text(
               "${playerTurn > 0 ? p1Name : p2Name} turn",
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 24,
-                color: Color(0xFFB75D69),
+                color: Theme.of(context).primaryColor,
               ),
             ),
           ),
@@ -112,9 +112,9 @@ class _GameScreenState extends State<GameScreen> {
             child: Container(
               padding: const EdgeInsets.all(32),
               margin: const EdgeInsets.all(24),
-              decoration: const BoxDecoration(
-                color: Color(0xFFEACDC2),
-                boxShadow: [
+              decoration: BoxDecoration(
+                color: Theme.of(context).primaryColorLight,
+                boxShadow: const [
                   BoxShadow(
                     blurRadius: 6,
                     offset: Offset(0, 4),
@@ -125,7 +125,6 @@ class _GameScreenState extends State<GameScreen> {
               ),
               alignment: Alignment.center,
               child: Column(
-                //crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

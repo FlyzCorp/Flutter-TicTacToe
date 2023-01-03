@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:tictactoe/defaultTheme.dart';
 import 'package:tictactoe/pages/game.dart';
+import 'package:tictactoe/pages/home.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,12 +21,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Tic Tac Toe',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        backgroundColor: const Color(0xFF1A1423),
-        scaffoldBackgroundColor: const Color(0xFF1A1423),
-      ),
-      home: const Scaffold(body: GameScreen()),
+      theme: defaultTheme,
+      home: const Scaffold(body: Home()),
     );
   }
 }

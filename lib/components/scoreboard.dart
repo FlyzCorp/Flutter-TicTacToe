@@ -18,9 +18,9 @@ class ScoreBoard extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(top: 64, bottom: 64),
       padding: const EdgeInsets.all(8),
-      decoration: const BoxDecoration(
-        color: Color(0xFFEACDC2),
-        boxShadow: [
+      decoration: BoxDecoration(
+        color: Theme.of(context).primaryColorLight,
+        boxShadow: const [
           BoxShadow(
             blurRadius: 6,
             offset: Offset(0, 4),
@@ -37,7 +37,7 @@ class ScoreBoard extends StatelessWidget {
               SvgPicture.asset(
                 'assets/img/o.svg',
                 width: 32,
-                color: const Color(0xFF372549),
+                color: Theme.of(context).backgroundColor,
               ),
               Text(
                 p1Name,
@@ -54,9 +54,9 @@ class ScoreBoard extends StatelessWidget {
             strokeColor: Theme.of(context).backgroundColor,
             child: Text(
               "$p1Score - $p2Score",
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 32,
-                color: Color(0xFFB75D69),
+                color: Theme.of(context).primaryColor,
               ),
             ),
           ),
@@ -73,7 +73,7 @@ class ScoreBoard extends StatelessWidget {
               SvgPicture.asset(
                 'assets/img/x.svg',
                 width: 32,
-                color: const Color(0xFF372549),
+                color: Theme.of(context).backgroundColor,
               ),
             ],
           ),

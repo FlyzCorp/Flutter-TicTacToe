@@ -11,14 +11,14 @@ class Title extends StatelessWidget {
         margin: const EdgeInsets.only(top: 48),
         child: BorderedText(
           strokeWidth: 10,
-          strokeColor: const Color(0xFFEACDC2),
-          child: const Text(
+          strokeColor: Theme.of(context).primaryColorLight,
+          child: Text(
             "TICTACTOE",
             style: TextStyle(
               fontFamily: 'Unbounded',
               fontWeight: FontWeight.w900,
               fontSize: 36,
-              color: Color(0xFFB75D69),
+              color: Theme.of(context).primaryColor,
             ),
           ),
         ),
