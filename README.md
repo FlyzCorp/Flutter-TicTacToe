@@ -1,3 +1,3 @@
 # Tic Tac Toe
 
-A TicTacToe Game Project write in Flutter
+A TicTacToe Game Project wrote in Flutter
