@@ -1,10 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
+typedef PlayerCallback = void Function(String p1, String p2);
 
 class PlayerForm extends StatefulWidget {
-  const PlayerForm({super.key});
+  const PlayerForm({super.key, required this.callbackPlayers});
+
+  final PlayerCallback callbackPlayers;
 
   @override
   State<PlayerForm> createState() => _PlayerFormState();
@@ -12,6 +13,15 @@ class PlayerForm extends StatefulWidget {
 
 class _PlayerFormState extends State<PlayerForm> {
   final _formKey = GlobalKey<FormState>();
+  final j1controller = TextEditingController();
+  final j2controller = TextEditingController();
+
+  @override
+  void dispose() {
+    j1controller.dispose();
+    j2controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +31,11 @@ class _PlayerFormState extends State<PlayerForm> {
         margin: const EdgeInsets.only(left: 16, right: 16, top: 64),
         child: Column(
           children: [
-            TextField(
+            TextFormField(
+              validator: (value) => value == null || value.isEmpty
+                  ? 'Veuillez renseigner un nom de joueur'
+                  : null,
+              controller: j1controller,
               cursorColor: Theme.of(context).primaryColorDark,
               decoration: const InputDecoration(
                 labelText: 'Nom du joueur 1',
@@ -30,7 +44,11 @@ class _PlayerFormState extends State<PlayerForm> {
             const SizedBox(
               height: 24,
             ),
-            TextField(
+            TextFormField(
+              validator: (value) => value == null || value.isEmpty
+                  ? 'Veuillez renseigner un nom de joueur'
+                  : null,
+              controller: j2controller,
               cursorColor: Theme.of(context).primaryColorDark,
               decoration: const InputDecoration(
                 labelText: 'Nom du joueur 2',
@@ -44,7 +62,13 @@ class _PlayerFormState extends State<PlayerForm> {
                 backgroundColor: Theme.of(context).primaryColor,
                 minimumSize: const Size.fromHeight(45),
               ),
-              onPressed: () => {},
+              onPressed: () => {
+                if (_formKey.currentState!.validate())
+                  {
+                    widget.callbackPlayers(
+                        j1controller.text, j2controller.text),
+                  }
+              },
               child: const Text("Jouer !"),
             ),
           ],
